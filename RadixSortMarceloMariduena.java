@@ -38,7 +38,7 @@ public class RadixSortMarceloMariduena {
 	
 	/** Radix bucket sort method **/
 	public static void radixSort(Integer[] myList) {
-		final int RADIX = 10;
+	    final int RADIX = 10;
 	    boolean maxLength = false;
 	    int temp = -1, placement = 1;
 	    
