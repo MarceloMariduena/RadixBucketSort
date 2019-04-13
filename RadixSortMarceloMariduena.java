@@ -39,30 +39,31 @@ public class RadixSortMarceloMariduena {
 	/** Radix bucket sort method **/
 	public static void radixSort(Integer[] myList) {
 		final int RADIX = 10;
+	    boolean maxLength = false;
+	    int temp = -1, placement = 1;
 	    
-	    // declare and initialize bucket[]
-	    ArrayList<Integer>[] bucket = new ArrayList[RADIX];
+	    /* declare and initialize bucket[]: an array of arrayLists */
+	    ArrayList<Integer>[] bucket = new ArrayList[RADIX]; // generic array
 	    
 	    for (int i = 0; i < bucket.length; i++) {
+	    	/* each key holds an arrayList of integers */
 	    	bucket[i] = new ArrayList<Integer>();
 	    }
 
-	    /* sort */
-	    boolean maxLength = false;
-	    int tmp = -1, placement = 1;
+	    /* radix sorting */
 	    while (!maxLength) {
 	    	maxLength = true;
 	      
-	    	/* split myList between lists */
+	    	/* split myList into buckets sorting each column of digits */
 	    	for (Integer i : myList) {
-	    		tmp = i / placement;
-	    		bucket[tmp % RADIX].add(i);
-	    		if (maxLength && tmp > 0) {
+	    		temp = i / placement; 
+	    		bucket[temp % RADIX].add(i); 
+	    		if (maxLength && temp > 0) {
 	    			maxLength = false;
 	    		}
 	    	}
 	      
-	    	/* empty the lists into myList */
+	    	/* empty the buckets into myList */
 	    	int a = 0;
 	    	for (int b = 0; b < RADIX; b++) {
 	    		for (Integer i : bucket[b]) {
